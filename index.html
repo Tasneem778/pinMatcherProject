@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input  id="random-number" value="" class="form-control" type="text">
+                    <button id="generateRandom" class="generate-btn">Generate Pin</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-section half-width">
+                    <input class="form-control" type="text" id="showNumbers">
+                    <div class="numbers">
+                        <div class="calc-body">
+                            <div class="calc-button-row">
+                                <button class="button" value=" 7 " onclick="getElementById('showNumbers').value += '7'" >7</button>
+                                <button class="button" value=" 8 " onclick="getElementById('showNumbers').value += '8'" >8</button>
+                                <button class="button" value=" 9 " onclick="getElementById('showNumbers').value += '9'" >9</button>
+                            </div>
+                            <div class="calc-button-row">
+                                <button class="button" value=" 4 " onclick="getElementById('showNumbers').value += '4'" >4</button>
+                                <button class="button" value=" 5 " onclick="getElementById('showNumbers').value += '5'" >5</button>
+                                <button class="button" value=" 6 " onclick="getElementById('showNumbers').value += '6'" >6</button>
+                            </div>
+                            <div class="calc-button-row">
+                                <button class="button" value=" 1 " onclick="getElementById('showNumbers').value += '1'" >1</button>
+                                <button class="button" value=" 2 " onclick="getElementById('showNumbers').value += '2'" >2</button>
+                                <button class="button" value=" 3 " onclick="getElementById('showNumbers').value += '3'" >3</button>
+                            </div>
+                            <div class="calc-button-row">
+                                <button class="button" onclick="back()"><</button>
+                                <button class="button" value=" 0 " onclick="getElementById('showNumbers').value += '0'" >0</button>
+                                <button class="button" value=" C " onclick="getElementById('showNumbers').value = ''">C</button>
+                            </div>
+                            <div>
+                                <button type="submit" class="submit-btn" id="submitBtn" onclick="submit()">Submit</button>
+                                <p class="action-left"><span id="value"> 3 </span>try left</p>
+                                <p id="warning"></p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="notify-section">
+            <p class="notify" id="invalid">❌ Pin Didn't Match, Please try again</p>
+            <p class="notify" id="valid">✅ Pin Matched... Secret door is opening for you</p>
+        </div>
+        <script>
+            const generateBtn=document.getElementById("generateRandom");
+            generateBtn.addEventListener("click",function(){
+                document.getElementById("random-number").value=Math.floor(1000 + Math.random() * 9000);
+            
+            })
+            const submitBtn=document.getElementById("submitBtn");
+            submitBtn.addEventListener("click",function(){
+                if((document.getElementById("random-number").value)==(document.getElementById('showNumbers').value)){
+                    valid.style.display="block";
+                    invalid.style.display="none";
+                    
+                }
+                else{
+                    invalid.style.display="block";
+                    valid.style.display="none";
+                    
+                }
+             
+              
+            })
+         
+ 
+            function back(){
+                var exp =document. getElementById('showNumbers').value;
+                if(exp){
+                    document.getElementById('showNumbers').value = exp.substring(0,exp.length-1);
+                }
+            }
+        
+            
+            var x=3;
+            var element = document.getElementById("value");
+            element.innerHTML = x;
+            
+            function submit(){
+            
+                if((document.getElementById("random-number").value)!=(document.getElementById('showNumbers').value)){
+                        element.innerHTML = --x;
+                    if(x==0){
+                        document.getElementById("submitBtn").style.display="none";
+                    }
+                    else{
+                        document.getElementById("valid").style.display="block";
+                        document.getElementById("invalid").style.display="none";
+                    }
+                
+        
+                }
+
+            }
+        </script>
+    </div>
+ 
+</body>
+</html>
