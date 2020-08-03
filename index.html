@@ -55,11 +55,13 @@
             <p class="notify" id="valid">✅ Pin Matched... Secret door is opening for you</p>
         </div>
         <script>
+            //generating random number:
             const generateBtn=document.getElementById("generateRandom");
             generateBtn.addEventListener("click",function(){
                 document.getElementById("random-number").value=Math.floor(1000 + Math.random() * 9000);
             
             })
+            //checking whether pin matched or not:
             const submitBtn=document.getElementById("submitBtn");
             submitBtn.addEventListener("click",function(){
                 if((document.getElementById("random-number").value)==(document.getElementById('showNumbers').value)){
@@ -76,7 +78,7 @@
               
             })
          
- 
+            //for backspace '<' function:
             function back(){
                 var exp =document. getElementById('showNumbers').value;
                 if(exp){
@@ -84,7 +86,7 @@
                 }
             }
         
-            
+            //Trial section:
             var x=3;
             var element = document.getElementById("value");
             element.innerHTML = x;
